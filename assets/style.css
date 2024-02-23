@@ -1,0 +1,57 @@
+body {
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+form {
+  width: 350px;
+}
+
+textarea {
+  resize: none;
+}
+
+.shimmer,
+.shimmer:checked {
+  background: #dddbdd;
+  background-image: linear-gradient(
+    to right,
+    #dddbdd 0%,
+    #edeef1 20%,
+    #dddbdd 40%,
+    #dddbdd 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 800px 104px;
+  display: inline-block;
+  position: relative;
+  color: transparent;
+  border: none;
+  border-radius: 6px;
+  appearance: none; /* Padrão */
+  -webkit-appearance: none; /* Safari e Chrome */
+  -moz-appearance: none; /* Firefox */
+  outline: none;
+
+  user-select: none; /* Impede a seleção de texto dentro do elemento */
+  cursor: not-allowed; /* Altera o cursor para "not-allowed" */
+  pointer-events: none; /* Remover o Clique */
+
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: placeholderShimmer;
+  -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}

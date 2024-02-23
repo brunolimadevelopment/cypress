@@ -1,0 +1,25 @@
+{
+  "name": "cypress-project",
+  "version": "1.0.0",
+  "description": "Sample project to demonstrate  how to run Cypress tests on multiple environments based on config files per environment.",
+  "scripts": {
+    "cy": "cypress open",
+    "test": "cypress run",
+    "test:homolog": "cypress run --config baseUrl=https://hackernews-seven.vercel.app --env environment=homolog",
+    "test:prod": "cypress run --config baseUrl=https://wlsf82-hacker-stories.web.app --env environment=prod",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "cypress.io",
+    "multiple configs per environment"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.11.0",
+    "eslint-plugin-json": "^3.1.0",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.3",
+    "pre-commit": "^1.2.2"
+  }
+}

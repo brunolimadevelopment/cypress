@@ -1,0 +1,17 @@
+O supportFile no Cypress é uma configuração que permite que você 
+especifique um arquivo JavaScript que será executado antes de cada um dos seus testes. 
+
+É executado uma vez antes de todos os testes. 
+
+Podemos fazer configurações específicas do seu projeto antes que seus testes sejam execupode configurar 
+propriedades globais ou ajustar configurações específicas do seu projeto antes que seus testes sejam executados.tados.
+
+- supportFile: false,
+
+Comandos Customizados:
+Você pode definir comandos personalizados que serão reutilizados em vários testes. Isso ajuda a evitar a duplicação de código e a melhorar a manutenção.
+
+describe(name, config, fn)
+context(name, config, fn)
+it(name, config, fn)
+specify(name, config, fn)
