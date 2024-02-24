@@ -16,15 +16,18 @@
 <body>
     <form id="myForm" onsubmit="return validateForm()">
         <div class="mb-3" data-cy="form-group">
+            <input type="file" class="form-control shimmer" data-cy="el-upload" tabindex="-1">
+        </div>
+        <div class="mb-3" data-cy="form-group">
             <label for="exampleInputEmail1" class="form-label shimmer" data-cy="el-label">Email address</label>
             <input type="email" class="form-control shimmer" id="exampleInputEmail1" aria-describedby="emailHelp"
-                data-cy="el-input" tabindex="-1">
+                data-cy="el-email" tabindex="-1">
             <div class="valid-feedback">Looks good!</div>
             <div id="validationServerUsernameFeedback" class="invalid-feedback">An error occurred</div>
         </div>
         <div class="mb-3" data-cy="form-group">
             <label for="exampleInputPassword1" class="form-label shimmer" data-cy="el-label">Password</label>
-            <input type="password" class="form-control shimmer" id="exampleInputPassword1" data-cy="el-input"
+            <input type="password" class="form-control shimmer" id="exampleInputPassword1" data-cy="el-pass"
                 tabindex="-1">
             <div class="valid-feedback">Looks good!</div>
             <div id="validationServerUsernameFeedback" class="invalid-feedback">An error occurred</div>
@@ -32,10 +35,10 @@
         <div class="mb-3" data-cy="form-group">
             <select class="form-select shimmer" aria-label="Default select example" data-cy="el-select" id="form-select"
                 tabindex="-1">
-                <option value="">Selecione uma opção</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="-- Selecione uma opção --">-- Selecione uma opção --</option>
+                <option value="One">One</option>
+                <option value="Two">Two</option>
+                <option value="Three">Three</option>
             </select>
             <div class="valid-feedback">Looks good!</div>
             <div id="validationServerUsernameFeedback" class="invalid-feedback">An error occurred</div>
@@ -48,21 +51,33 @@
             <div id="validationServerUsernameFeedback" class="invalid-feedback">An error occurred</div>
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input shimmer" id="exampleCheck1" data-cy="el-input" tabindex="-1">
+            <input type="checkbox" class="form-check-input shimmer" id="exampleCheck1" data-cy="el-check" tabindex="-1">
             <label class="form-check-label shimmer" for="exampleCheck1" data-cy="el-label">Accept the terms</label>
             <div class="valid-feedback">Looks good!</div>
             <div id="validationServerUsernameFeedback" class="invalid-feedback">An error occurred</div>
         </div>
-        <button type="submit" class="btn btn-primary shimmer" id="submit" data-cy="el-submit"
-            tabindex="-1">Submit</button>
+        <input type="submit" class="btn btn-primary shimmer" id="submit" data-cy="el-submit" tabindex="-1"
+            value="Submit" />
     </form>
-    <div id="spinner" class="spinner-border text-primary" role="status" style="display: none;">
+    <div id="spinner" class="spinner-border text-primary" role="status" data-cy="el-spinner" style="display: none;">
         <span class="visually-hidden">Loading...</span>
     </div>
-    <div id="successBlock" class="card" style="width: 18rem; height: 10rem; display: none;">
-        <div class="card-body">
-            Dados enviados com sucesso!
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" data-cy="el-toast">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <span class="spinner-grow spinner-grow-sm text-primary" aria-hidden="true" role="status"></span>
+                <strong class="me-auto">&nbsp;Enviando...</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Processando os dados para serem enviados.
+            </div>
         </div>
+    </div>
+    <div class="card-success" id="card-success" data-cy="el-success-form">
+        <h3 class="card-success-title">Enviado com sucesso!</h3>
+        <img src="assets/check-circle.svg" alt="Enviado" class="card-success-icon">
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

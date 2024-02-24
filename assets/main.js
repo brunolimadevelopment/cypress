@@ -8,14 +8,77 @@ function removeShimmerClass() {
     element.removeAttribute("tabindex");
   });
 }
-
 // Chama a função após 8 segundos (8000 milissegundos)
 setTimeout(removeShimmerClass, 3000);
 
-function validateForm() {
-  // Exibir o spinner
+function hiddenForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+function showToast() {
+  const toastLiveExample = document.getElementById("liveToast");
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+
+  toastBootstrap.show();
+
+  setTimeout(function () {
+    toastBootstrap.hide();
+  }, 2000);
+}
+function showSuccessBlock() {
+  // Esconder o formulário
+  const form = document.getElementById("myForm");
+  form.style.display = "none";
+
+  // Exibir o bloco de sucesso
+  const successBlock = document.getElementById("card-success");
+  successBlock.style.display = "flex";
+}
+function showSpinner(isFormValid) {
   const spinner = document.getElementById("spinner");
   spinner.style.display = "inline-block";
+
+  if (isFormValid) {
+    // Se o formulário for válido, aguarde 8 segundos e depois execute a ação desejada
+    setTimeout(() => {
+      // Esconder o spinner
+      spinner.style.display = "none";
+
+      return showSuccessBlock();
+    }, 3500);
+  }
+}
+function addClasses(element, classes) {
+  element.classList.add(...classes);
+}
+function removeClasses(element, classes) {
+  element.classList.remove(...classes);
+}
+function isValidEmail(email) {
+  // Validar formato de e-mail
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+function validateField(value, fieldType) {
+  // Validar com base no tipo de campo
+  switch (fieldType) {
+    case "email":
+      return isValidEmail(value);
+    case "checkbox":
+      return value; // O checkbox deve estar marcado
+    case "select":
+      return value !== "" && value !== "Selecione uma opção"; // Validar o campo select
+    default:
+      return value !== ""; // Campo não pode estar vazio
+  }
+
+  // Adicione mais casos conforme necessário para outros tipos de campo
+}
+function validateForm() {
+  let isFormValid = true;
+
+  hiddenForm();
+  showToast();
+  showSpinner(isFormValid);
 
   const formFields = [
     { id: "exampleInputEmail1", type: "email" },
@@ -24,8 +87,6 @@ function validateForm() {
     { id: "form-select", type: "select" },
     { id: "exampleFormControlTextarea1", type: "textarea" },
   ];
-
-  let isFormValid = true;
 
   formFields.forEach(({ id, type }) => {
     const field = document.getElementById(id);
@@ -47,55 +108,5 @@ function validateForm() {
     isFormValid = isFormValid && isValidField;
   });
 
-  if (isFormValid) {
-    // Se o formulário for válido, aguarde 8 segundos e depois execute a ação desejada
-    setTimeout(() => {
-      // Esconder o spinner
-      spinner.style.display = "none";
-
-      showSuccessBlock();
-    }, 3000);
-  }
-
   return false; // Evitar que o formulário seja enviado
-}
-
-function validateField(value, fieldType) {
-  // Validar com base no tipo de campo
-  switch (fieldType) {
-    case "email":
-      return isValidEmail(value);
-    case "checkbox":
-      return value; // O checkbox deve estar marcado
-    case "select":
-      return value !== "" && value !== "Selecione uma opção"; // Validar o campo select
-    default:
-      return value !== ""; // Campo não pode estar vazio
-  }
-
-  // Adicione mais casos conforme necessário para outros tipos de campo
-}
-
-function isValidEmail(email) {
-  // Validar formato de e-mail
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-function addClasses(element, classes) {
-  element.classList.add(...classes);
-}
-
-function removeClasses(element, classes) {
-  element.classList.remove(...classes);
-}
-
-function showSuccessBlock() {
-  // Esconder o formulário
-  const form = document.getElementById("myForm");
-  form.style.display = "none";
-
-  // Exibir o bloco de sucesso
-  const successBlock = document.getElementById("successBlock");
-  successBlock.style.display = "block";
 }
