@@ -16,7 +16,9 @@
 <body>
     <form id="myForm" onsubmit="return validateForm()">
         <div class="mb-3" data-cy="form-group">
-            <input type="file" class="form-control shimmer" data-cy="el-upload" tabindex="-1">
+            <input type="file" class="form-control shimmer" id="file" data-cy="el-upload" tabindex="-1">
+            <div class="valid-feedback">Looks good!</div>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">An error occurred</div>
         </div>
         <div class="mb-3" data-cy="form-group">
             <label for="exampleInputEmail1" class="form-label shimmer" data-cy="el-label">Email address</label>
@@ -35,7 +37,7 @@
         <div class="mb-3" data-cy="form-group">
             <select class="form-select shimmer" aria-label="Default select example" data-cy="el-select" id="form-select"
                 tabindex="-1">
-                <option value="-- Selecione uma opção --">-- Selecione uma opção --</option>
+                <option value="">-- Selecione uma opção --</option>
                 <option value="One">One</option>
                 <option value="Two">Two</option>
                 <option value="Three">Three</option>
@@ -56,8 +58,8 @@
             <div class="valid-feedback">Looks good!</div>
             <div id="validationServerUsernameFeedback" class="invalid-feedback">An error occurred</div>
         </div>
-        <button type="submit" class="btn btn-primary shimmer" id="submit" data-cy="el-submit"
-            tabindex="-1">Submit</button>
+        <input type="submit" class="btn btn-primary shimmer" id="submit" data-cy="el-submit" tabindex="-1"
+            value="Submit" />
     </form>
     <div id="spinner" class="spinner-border text-primary" role="status" data-cy="el-spinner" style="display: none;">
         <span class="visually-hidden">Loading...</span>

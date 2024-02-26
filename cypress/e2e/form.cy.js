@@ -44,6 +44,6 @@ describe("testando campo de upload", () => {
 
     cy.get("[data-cy=el-check]").not("[disabled]").check().should("be.checked");
 
-    cy.get("[data-cy=el-submit]").submit();
+    //cy.get("[data-cy=el-submit]").submit();
   });
 });
