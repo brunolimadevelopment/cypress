@@ -3,9 +3,7 @@ describe("testando campo de upload", () => {
     cy.visit("http://localhost:3000");
     cy.wait(4000);
 
-    cy.get("[data-cy=el-upload]").selectFile(
-      "./cypress/videos/search.cy.js.mp4"
-    );
+    cy.get("[data-cy=el-upload]").selectFile("./cypress/videos/form.cy.js.mp4");
 
     cy.get("[data-cy=el-email]")
       .should("exist")
@@ -46,6 +44,6 @@ describe("testando campo de upload", () => {
 
     cy.get("[data-cy=el-check]").not("[disabled]").check().should("be.checked");
 
-    //cy.get("[data-cy=el-submit]").submit();
+    cy.get("[data-cy=el-submit]").submit();
   });
 });

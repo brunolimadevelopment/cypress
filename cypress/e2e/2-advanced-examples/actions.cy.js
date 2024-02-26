@@ -62,7 +62,7 @@ context("Actions", () => {
       .should("have.value", "");
   });
 
-  it(".submit() - submit a form", () => {
+  it.only(".submit() - submit a form", () => {
     // https://on.cypress.io/submit
     cy.get(".action-form").find('[type="text"]').type("HALFOFF");
 
